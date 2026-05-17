@@ -1,0 +1,10 @@
+variable,decision,reason
+DIA,Keep,Strongest relationship with CARBON_AG and central tree-size predictor.
+HT,Keep or compare with ACTUALHT,Strong relationship with carbon but highly correlated with ACTUALHT.
+ACTUALHT,Compare with HT,Almost duplicate height information; may cause redundancy.
+CR,Optional,Weak direct correlation but may capture tree condition.
+SPCD,Keep as categorical,Species codes show different median carbon values.
+STATECD,Keep as categorical,Selected states show different median carbon patterns.
+FORTYPCD,Keep as categorical,Forest type shows variation in median carbon.
+VOLCFNET / VOLCSNET / VOLBFNET,Drop from predictors,High missingness and potential overlap with biomass/carbon estimation.
+DRYBIO_AG,Drop from predictors,Directly related to carbon/biomass target and likely leakage risk.
