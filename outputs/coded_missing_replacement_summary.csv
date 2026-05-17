@@ -1,0 +1,5 @@
+variable,coded_missing_values_checked,coded_missing_count_before,coded_missing_count_after
+STDAGE,"[-999, -99, -9]",35225,0
+BALIVE,"[-999, -99, -9]",0,0
+ALSTK,"[-999, -99, -9]",0,0
+GSSTK,"[-999, -99, -9]",0,0
