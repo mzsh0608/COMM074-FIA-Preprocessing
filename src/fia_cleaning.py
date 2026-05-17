@@ -25,10 +25,40 @@ KEY_VARIABLES = [
     "STDSZCD",
 ]
 
+NUMERIC_COLUMNS_TO_CONVERT = [
+    "CARBON_AG",
+    "CARBON_BG",
+    "DRYBIO_AG",
+    "DRYBIO_BG",
+    "DIA",
+    "HT",
+    "ACTUALHT",
+    "CR",
+    "STDAGE",
+    "BALIVE",
+    "ALSTK",
+    "GSSTK",
+    "TPA_UNADJ",
+]
+
 
 def load_merged_dataset():
     """Load the merged TREE, PLOT, and COND dataset."""
     return pd.read_parquet(MERGED_DATA_PATH)
+
+
+def convert_key_columns_to_numeric(df):
+    """Convert key FIA measurement columns to numeric values when present."""
+    converted_df = df.copy()
+
+    for column in NUMERIC_COLUMNS_TO_CONVERT:
+        if column in converted_df.columns:
+            converted_df[column] = pd.to_numeric(
+                converted_df[column],
+                errors="coerce",
+            )
+
+    return converted_df
 
 
 def summarise_missing_values(df, output_path=None):
@@ -83,7 +113,7 @@ def _filter_rows(df, summary_rows, step, mask, reason):
 
 def clean_fia_tree_data(df, target_col="CARBON_AG", keep_live_only=True):
     """Apply simple cleaning rules for tree-level carbon analysis."""
-    cleaned_df = df.copy()
+    cleaned_df = convert_key_columns_to_numeric(df)
     summary_rows = []
 
     _record_cleaning_step(

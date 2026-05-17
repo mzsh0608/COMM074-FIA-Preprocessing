@@ -1,0 +1,9 @@
+step,rows_before,rows_after,rows_removed,percentage_removed,reason
+Start,5796627,5796627,0,0.0,Start with merged dataset.
+Remove missing target,5796627,5057704,738923,12.74746503440708,Remove rows where CARBON_AG is missing.
+Remove negative target,5057704,5057704,0,0.0,Remove rows where CARBON_AG is negative.
+Remove missing DIA,5057704,5057704,0,0.0,Remove rows where tree diameter is missing.
+Remove DIA <= 0,5057704,5057704,0,0.0,Remove rows where tree diameter is zero or negative.
+Remove missing SPCD,5057704,5057704,0,0.0,Remove rows where species code is missing.
+Keep live trees only,5057704,4540549,517155,10.225094232481775,Keep only rows where STATUSCD equals 1.
+Remove exact duplicate rows,4540549,4540549,0,0.0,Remove rows that are exact duplicates across all columns.
