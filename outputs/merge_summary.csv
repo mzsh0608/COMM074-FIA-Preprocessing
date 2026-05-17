@@ -1,0 +1,12 @@
+metric,value
+tree_rows_before_merge,5796627
+plot_rows_before_merge,246218
+cond_rows_before_merge,311972
+rows_after_tree_plot_merge,5796627
+rows_after_cond_merge,5796627
+final_row_count_matches_tree,True
+missing_plot_match_rate,0.0
+missing_cond_match_rate,0.015009245894207046
+plot_statecd_missing_rate,0.0
+cond_fortypcd_missing_rate,0.015009245894207096
+cond_owngrpcd_missing_rate,0.008197008363657002
