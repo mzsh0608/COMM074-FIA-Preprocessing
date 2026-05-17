@@ -2,13 +2,18 @@
 __pycache__/
 .ipynb_checkpoints/
 
+# Large/raw/intermediate data
 data/raw_entire_fia/
 data/parquet/
 data/interim/
 data/processed/
 
-*.csv
+# Large file types
 *.parquet
 *.zip
 *.db
 *.sqlite
+
+# Keep small report outputs trackable
+!outputs/*.csv
+!data/inventory/*.csv
