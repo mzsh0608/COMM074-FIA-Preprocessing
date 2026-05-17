@@ -1,0 +1,12 @@
+file_name,include_for_project,reason
+ENTIRE_TREE.csv,Yes,Main individual-tree table containing tree measurements and carbon/biomass-related target variables.
+ENTIRE_PLOT.csv,Yes,"Provides plot-level location, inventory year and geographic context."
+ENTIRE_COND.csv,Yes,"Provides forest condition, stand, site and ownership variables."
+ENTIRE_REF_SPECIES.csv,Yes,Provides species labels for interpreting SPCD.
+ENTIRE_REF_SPECIES_GROUP.csv,Yes,Provides species group labels for business-friendly species analysis.
+ENTIRE_REF_FOREST_TYPE.csv,Yes,Provides forest type labels for EDA and interpretation.
+ENTIRE_REF_FOREST_TYPE_GROUP.csv,Yes,Provides broader forest type group labels.
+ENTIRE_COUNTY.csv,Yes,Provides county and state labels for geographic analysis.
+ENTIRE_REF_OWNGRPCD.csv,Yes,Provides ownership group labels for forest management interpretation.
+"DWM, OZONE, LICHEN, VEG and FVS table families",No for first modelling dataset,"Useful for other FIA analyses, but not directly required for individual standing-tree carbon storage prediction."
+POP and EVALIDATOR table families,No for first modelling dataset,Designed for population estimation and evaluation metadata rather than tree-level supervised regression.
