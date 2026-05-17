@@ -74,14 +74,15 @@ def _max_if_exists(df, column):
     return df[column].max()
 
 
-def _save_current_figure(file_name):
-    """Save the current matplotlib figure in the project figures folder."""
+def _save_show_figure(fig, file_name):
+    """Save a figure, display it in the notebook, then close it."""
     create_project_dirs()
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
     output_path = FIGURES_DIR / file_name
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=300, bbox_inches="tight")
-    plt.close()
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=300, bbox_inches="tight")
+    plt.show()
+    plt.close(fig)
 
     return output_path
 
@@ -103,13 +104,19 @@ def plot_missing_values(df):
     )
     missing.columns = ["variable", "missing_percentage"]
 
-    plt.figure(figsize=(10, 7))
-    sns.barplot(data=missing, x="missing_percentage", y="variable", color="#4C78A8")
-    plt.title("Top Missing Value Percentages")
-    plt.xlabel("Missing values (%)")
-    plt.ylabel("Variable")
+    fig, ax = plt.subplots(figsize=(10, 7))
+    sns.barplot(
+        data=missing,
+        x="missing_percentage",
+        y="variable",
+        color="#4C78A8",
+        ax=ax,
+    )
+    ax.set_title("Top Missing Value Percentages")
+    ax.set_xlabel("Missing values (%)")
+    ax.set_ylabel("Variable")
 
-    return _save_current_figure("missing_values.png")
+    return _save_show_figure(fig, "missing_values.png")
 
 
 def plot_carbon_distribution(df):
@@ -117,13 +124,13 @@ def plot_carbon_distribution(df):
     if not _require_columns(df, [TARGET_COLUMN], "carbon distribution"):
         return None
 
-    plt.figure(figsize=(9, 6))
-    sns.histplot(df[TARGET_COLUMN].dropna(), bins=60, color="#4C78A8")
-    plt.title("Distribution of Aboveground Tree Carbon")
-    plt.xlabel("Aboveground carbon")
-    plt.ylabel("Tree count")
+    fig, ax = plt.subplots(figsize=(9, 6))
+    sns.histplot(df[TARGET_COLUMN].dropna(), bins=60, color="#4C78A8", ax=ax)
+    ax.set_title("Distribution of Aboveground Tree Carbon")
+    ax.set_xlabel("Aboveground carbon")
+    ax.set_ylabel("Tree count")
 
-    return _save_current_figure("carbon_distribution.png")
+    return _save_show_figure(fig, "carbon_distribution.png")
 
 
 def plot_log_carbon_distribution(df):
@@ -133,13 +140,13 @@ def plot_log_carbon_distribution(df):
 
     log_carbon = np.log1p(df[TARGET_COLUMN].dropna())
 
-    plt.figure(figsize=(9, 6))
-    sns.histplot(log_carbon, bins=60, color="#72B7B2")
-    plt.title("Distribution of Log Aboveground Tree Carbon")
-    plt.xlabel("log1p(aboveground carbon)")
-    plt.ylabel("Tree count")
+    fig, ax = plt.subplots(figsize=(9, 6))
+    sns.histplot(log_carbon, bins=60, color="#72B7B2", ax=ax)
+    ax.set_title("Distribution of Log Aboveground Tree Carbon")
+    ax.set_xlabel("log1p(aboveground carbon)")
+    ax.set_ylabel("Tree count")
 
-    return _save_current_figure("log_carbon_distribution.png")
+    return _save_show_figure(fig, "log_carbon_distribution.png")
 
 
 def plot_dia_vs_carbon(df_sample):
@@ -147,13 +154,20 @@ def plot_dia_vs_carbon(df_sample):
     if not _require_columns(df_sample, ["DIA", TARGET_COLUMN], "DIA vs carbon"):
         return None
 
-    plt.figure(figsize=(8, 6))
-    sns.scatterplot(data=df_sample, x="DIA", y=TARGET_COLUMN, alpha=0.25, s=12)
-    plt.title("Tree Diameter vs Aboveground Carbon")
-    plt.xlabel("Diameter at breast height")
-    plt.ylabel("Aboveground carbon")
+    fig, ax = plt.subplots(figsize=(8, 6))
+    sns.scatterplot(
+        data=df_sample,
+        x="DIA",
+        y=TARGET_COLUMN,
+        alpha=0.25,
+        s=12,
+        ax=ax,
+    )
+    ax.set_title("Tree Diameter vs Aboveground Carbon")
+    ax.set_xlabel("Diameter at breast height")
+    ax.set_ylabel("Aboveground carbon")
 
-    return _save_current_figure("dia_vs_carbon.png")
+    return _save_show_figure(fig, "dia_vs_carbon.png")
 
 
 def plot_ht_vs_carbon(df_sample):
@@ -161,13 +175,20 @@ def plot_ht_vs_carbon(df_sample):
     if not _require_columns(df_sample, ["HT", TARGET_COLUMN], "HT vs carbon"):
         return None
 
-    plt.figure(figsize=(8, 6))
-    sns.scatterplot(data=df_sample, x="HT", y=TARGET_COLUMN, alpha=0.25, s=12)
-    plt.title("Tree Height vs Aboveground Carbon")
-    plt.xlabel("Tree height")
-    plt.ylabel("Aboveground carbon")
+    fig, ax = plt.subplots(figsize=(8, 6))
+    sns.scatterplot(
+        data=df_sample,
+        x="HT",
+        y=TARGET_COLUMN,
+        alpha=0.25,
+        s=12,
+        ax=ax,
+    )
+    ax.set_title("Tree Height vs Aboveground Carbon")
+    ax.set_xlabel("Tree height")
+    ax.set_ylabel("Aboveground carbon")
 
-    return _save_current_figure("ht_vs_carbon.png")
+    return _save_show_figure(fig, "ht_vs_carbon.png")
 
 
 def plot_cr_vs_carbon(df_sample):
@@ -175,13 +196,20 @@ def plot_cr_vs_carbon(df_sample):
     if not _require_columns(df_sample, ["CR", TARGET_COLUMN], "CR vs carbon"):
         return None
 
-    plt.figure(figsize=(8, 6))
-    sns.scatterplot(data=df_sample, x="CR", y=TARGET_COLUMN, alpha=0.25, s=12)
-    plt.title("Crown Ratio vs Aboveground Carbon")
-    plt.xlabel("Crown ratio")
-    plt.ylabel("Aboveground carbon")
+    fig, ax = plt.subplots(figsize=(8, 6))
+    sns.scatterplot(
+        data=df_sample,
+        x="CR",
+        y=TARGET_COLUMN,
+        alpha=0.25,
+        s=12,
+        ax=ax,
+    )
+    ax.set_title("Crown Ratio vs Aboveground Carbon")
+    ax.set_xlabel("Crown ratio")
+    ax.set_ylabel("Aboveground carbon")
 
-    return _save_current_figure("cr_vs_carbon.png")
+    return _save_show_figure(fig, "cr_vs_carbon.png")
 
 
 def plot_carbon_by_state(df):
@@ -196,14 +224,14 @@ def plot_carbon_by_state(df):
         .reset_index()
     )
 
-    plt.figure(figsize=(11, 6))
-    sns.barplot(data=summary, x="STATECD", y=TARGET_COLUMN, color="#59A14F")
-    plt.title("Median Aboveground Carbon by State")
-    plt.xlabel("State code")
-    plt.ylabel("Median aboveground carbon")
-    plt.xticks(rotation=90)
+    fig, ax = plt.subplots(figsize=(11, 6))
+    sns.barplot(data=summary, x="STATECD", y=TARGET_COLUMN, color="#59A14F", ax=ax)
+    ax.set_title("Median Aboveground Carbon by State")
+    ax.set_xlabel("State code")
+    ax.set_ylabel("Median aboveground carbon")
+    ax.tick_params(axis="x", rotation=90)
 
-    return _save_current_figure("carbon_by_state.png")
+    return _save_show_figure(fig, "carbon_by_state.png")
 
 
 def plot_carbon_by_top_species(df, top_n=15):
@@ -220,14 +248,14 @@ def plot_carbon_by_top_species(df, top_n=15):
         .reset_index()
     )
 
-    plt.figure(figsize=(10, 6))
-    sns.barplot(data=summary, x="SPCD", y=TARGET_COLUMN, color="#F28E2B")
-    plt.title(f"Median Aboveground Carbon by Top {top_n} Species")
-    plt.xlabel("Species code")
-    plt.ylabel("Median aboveground carbon")
-    plt.xticks(rotation=45)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.barplot(data=summary, x="SPCD", y=TARGET_COLUMN, color="#F28E2B", ax=ax)
+    ax.set_title(f"Median Aboveground Carbon by Top {top_n} Species")
+    ax.set_xlabel("Species code")
+    ax.set_ylabel("Median aboveground carbon")
+    ax.tick_params(axis="x", rotation=45)
 
-    return _save_current_figure("carbon_by_top_species.png")
+    return _save_show_figure(fig, "carbon_by_top_species.png")
 
 
 def plot_carbon_by_forest_type(df, top_n=15):
@@ -244,14 +272,14 @@ def plot_carbon_by_forest_type(df, top_n=15):
         .reset_index()
     )
 
-    plt.figure(figsize=(10, 6))
-    sns.barplot(data=summary, x="FORTYPCD", y=TARGET_COLUMN, color="#E15759")
-    plt.title(f"Median Aboveground Carbon by Top {top_n} Forest Types")
-    plt.xlabel("Forest type code")
-    plt.ylabel("Median aboveground carbon")
-    plt.xticks(rotation=45)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.barplot(data=summary, x="FORTYPCD", y=TARGET_COLUMN, color="#E15759", ax=ax)
+    ax.set_title(f"Median Aboveground Carbon by Top {top_n} Forest Types")
+    ax.set_xlabel("Forest type code")
+    ax.set_ylabel("Median aboveground carbon")
+    ax.tick_params(axis="x", rotation=45)
 
-    return _save_current_figure("carbon_by_forest_type.png")
+    return _save_show_figure(fig, "carbon_by_forest_type.png")
 
 
 def plot_carbon_by_diameter_class(df):
@@ -271,13 +299,19 @@ def plot_carbon_by_diameter_class(df):
     summary = plot_df.groupby("diameter_class", observed=True)[TARGET_COLUMN].median()
     summary = summary.reset_index()
 
-    plt.figure(figsize=(9, 6))
-    sns.barplot(data=summary, x="diameter_class", y=TARGET_COLUMN, color="#B07AA1")
-    plt.title("Median Aboveground Carbon by Diameter Class")
-    plt.xlabel("Diameter class")
-    plt.ylabel("Median aboveground carbon")
+    fig, ax = plt.subplots(figsize=(9, 6))
+    sns.barplot(
+        data=summary,
+        x="diameter_class",
+        y=TARGET_COLUMN,
+        color="#B07AA1",
+        ax=ax,
+    )
+    ax.set_title("Median Aboveground Carbon by Diameter Class")
+    ax.set_xlabel("Diameter class")
+    ax.set_ylabel("Median aboveground carbon")
 
-    return _save_current_figure("carbon_by_diameter_class.png")
+    return _save_show_figure(fig, "carbon_by_diameter_class.png")
 
 
 def plot_correlation_heatmap(df):
@@ -302,7 +336,7 @@ def plot_correlation_heatmap(df):
 
     corr = df[available_columns].corr(numeric_only=True)
 
-    plt.figure(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(10, 8))
     sns.heatmap(
         corr,
         annot=True,
@@ -311,10 +345,11 @@ def plot_correlation_heatmap(df):
         center=0,
         linewidths=0.5,
         cbar_kws={"label": "Correlation"},
+        ax=ax,
     )
-    plt.title("Correlation Heatmap for Key Numeric Variables")
+    ax.set_title("Correlation Heatmap for Key Numeric Variables")
 
-    return _save_current_figure("correlation_heatmap.png")
+    return _save_show_figure(fig, "correlation_heatmap.png")
 
 
 def create_numeric_summary(df, output_path):
