@@ -1,0 +1,6 @@
+finding,business_meaning,modelling_implication
+Tree carbon storage is expected to be right-skewed.,A smaller share of larger trees may represent a disproportionately high share of standing carbon value.,Consider log transformation or robust/non-linear models.
+Diameter is expected to be strongly associated with carbon storage.,Tree size is central to carbon-aware harvesting and conservation review.,Include DIA and engineered size features such as DIA_squared.
+Height and actual height may provide additional structural information.,Trees with similar diameter may differ in carbon storage depending on vertical structure.,Include HT/ACTUALHT where missingness is manageable.
+"Species, forest type and geography show potential differences in carbon storage.","Carbon planning should consider ecological and regional context, not only individual tree size.","Treat SPCD, FORTYPCD and STATECD as categorical predictors."
+Remaining missing values exist in some non-essential predictors.,Some useful inventory variables are incomplete but may still improve predictions.,Use imputation or missing indicators in final preprocessing.
