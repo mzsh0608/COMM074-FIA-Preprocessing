@@ -1,0 +1,10 @@
+table_name,output_file,row_count
+plot_selected,plot_selected.parquet,246218
+tree_selected,tree_selected.parquet,5796627
+cond_selected,cond_selected.parquet,311972
+ref_species,ref_species.parquet,2697
+ref_species_group,ref_species_group.parquet,54
+ref_forest_type,ref_forest_type.parquet,207
+ref_forest_type_group,ref_forest_type_group.parquet,34
+county,county.parquet,3250
+ref_owngrpcd,ref_owngrpcd.parquet,4

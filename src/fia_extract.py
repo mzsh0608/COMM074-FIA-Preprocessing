@@ -28,14 +28,24 @@ PLOT_COLUMNS = [
 TREE_COLUMNS = [
     "CN",
     "PLT_CN",
-    "CONDID",
+    "PREV_TRE_CN",
+    "INVYR",
+    "STATECD",
+    "UNITCD",
+    "COUNTYCD",
+    "PLOT",
+    "SUBP",
     "TREE",
+    "CONDID",
     "STATUSCD",
     "SPCD",
     "DIA",
+    "DIAHTCD",
     "HT",
+    "HTCD",
     "ACTUALHT",
-    "TPA_UNADJ",
+    "CR",
+    "CCLCD",
     "CARBON_AG",
     "CARBON_BG",
     "DRYBIO_AG",
@@ -43,6 +53,7 @@ TREE_COLUMNS = [
     "VOLCFNET",
     "VOLCSNET",
     "VOLBFNET",
+    "TPA_UNADJ",
 ]
 
 COND_COLUMNS = [
@@ -56,6 +67,7 @@ COND_COLUMNS = [
     "RESERVCD",
     "SITECLCD",
     "STDAGE",
+    "STDSZCD",
     "BALIVE",
     "ALSTK",
     "GSSTK",
@@ -219,6 +231,10 @@ def extract_core_tables(selected_state_codes):
         )
 
         tree_columns = _columns_for_file(tree_csv, TREE_COLUMNS)
+        tree_available_columns = get_available_columns(tree_csv)
+        if "CR" in tree_available_columns and "CR" not in tree_columns:
+            tree_columns.append("CR")
+
         if "PLT_CN" not in tree_columns:
             raise ValueError("ENTIRE_TREE.csv must contain PLT_CN.")
 
@@ -238,6 +254,11 @@ def extract_core_tables(selected_state_codes):
         )
 
         cond_columns = _columns_for_file(cond_csv, COND_COLUMNS)
+        cond_available_columns = get_available_columns(cond_csv)
+        for column in ["STDSZCD", "OWNGRPCD"]:
+            if column in cond_available_columns and column not in cond_columns:
+                cond_columns.append(column)
+
         if "PLT_CN" not in cond_columns:
             raise ValueError("ENTIRE_COND.csv must contain PLT_CN.")
 
