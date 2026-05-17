@@ -1,0 +1,52 @@
+FIA modelling handoff notes
+
+Target:
+- CARBON_AG is the primary target for aboveground tree carbon prediction.
+- CARBON_AG_log is included as a transformed target option created with log1p.
+
+Task type:
+- Supervised regression.
+
+Split files:
+- Full modelling data: E:\BA_DV_Project\COMM074_FIA_Project\data\processed\fia_model_data.parquet
+- Train split: E:\BA_DV_Project\COMM074_FIA_Project\data\processed\fia_train.parquet
+- Validation split: E:\BA_DV_Project\COMM074_FIA_Project\data\processed\fia_validation.parquet
+- Test split: E:\BA_DV_Project\COMM074_FIA_Project\data\processed\fia_test.parquet
+
+Leakage warning:
+- Do not use biomass, carbon component, volume, or TPA-derived variables as predictors.
+- These columns were excluded before saving the modelling files:
+  ["CARBON_AG_log", "CARBON_BG", "DRYBIO_AG", "DRYBIO_BG", "TPA_UNADJ", "VOLBFNET", "VOLCFNET", "VOLCSNET"]
+
+Pipeline warning:
+- One-hot encoding, scaling, and imputation should be fitted only inside later
+  modelling pipelines after the train/validation/test split.
+
+Feature metadata:
+{
+  "target": "CARBON_AG",
+  "log_target": "CARBON_AG_log",
+  "task_type": "supervised regression",
+  "numeric_features": [
+    "DIA",
+    "HT",
+    "ACTUALHT",
+    "CR",
+    "STDAGE",
+    "BALIVE",
+    "ALSTK",
+    "GSSTK",
+    "DIA_squared",
+    "DIA_HT_interaction"
+  ],
+  "categorical_features": [
+    "SPCD",
+    "STATECD",
+    "COUNTYCD",
+    "FORTYPCD",
+    "OWNGRPCD",
+    "SITECLCD",
+    "STDSZCD",
+    "diameter_class"
+  ]
+}

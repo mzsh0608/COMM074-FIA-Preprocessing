@@ -194,7 +194,15 @@ def create_stratified_regression_split(df, target_col="CARBON_AG", random_state=
     print(f"Validation rows: {len(validation_df):,}")
     print(f"Test rows: {len(test_df):,}")
 
-    return train_df, validation_df, test_df
+    split_summary = _create_split_summary(
+        df,
+        train_df,
+        validation_df,
+        test_df,
+        target_col=target_col,
+    )
+
+    return train_df, validation_df, test_df, split_summary
 
 
 def _validate_stratification_bins(target_bins, split_name):
@@ -360,7 +368,13 @@ def _create_feature_list(
     return pd.DataFrame(rows)
 
 
-def _create_split_summary(model_df, train_df, validation_df, test_df):
+def _create_split_summary(
+    model_df,
+    train_df,
+    validation_df,
+    test_df,
+    target_col="CARBON_AG",
+):
     """Summarise row counts and percentages for each split."""
     total_rows = len(model_df)
     rows = []
@@ -376,6 +390,10 @@ def _create_split_summary(model_df, train_df, validation_df, test_df):
                 "split": split_name,
                 "row_count": len(split_df),
                 "percentage": 0 if total_rows == 0 else len(split_df) / total_rows * 100,
+                "target_mean": split_df[target_col].mean(),
+                "target_median": split_df[target_col].median(),
+                "target_min": split_df[target_col].min(),
+                "target_max": split_df[target_col].max(),
             }
         )
 
@@ -466,7 +484,9 @@ if __name__ == "__main__":
         final_target_columns,
         final_dropped_leakage_columns,
     ) = select_final_model_columns(engineered_df)
-    train, validation, test = create_stratified_regression_split(final_model_df)
+    train, validation, test, split_summary = create_stratified_regression_split(
+        final_model_df
+    )
     final_data_dictionary = create_final_data_dictionary(
         final_model_df,
         final_numeric_features,

@@ -1,0 +1,24 @@
+variable_name,role,type,description
+CARBON_AG,target,float64,Aboveground tree carbon target.
+CN,identifier/context,int64,Unique tree record identifier.
+PLT_CN,identifier/context,int64,Plot identifier used to link TREE records to PLOT and COND.
+CONDID,identifier/context,int64,Condition identifier within a plot.
+TREE,identifier/context,int64,Tree number within a plot.
+DIA,numeric_predictor,float64,Tree diameter at breast height.
+HT,numeric_predictor,float64,Tree height.
+ACTUALHT,numeric_predictor,float64,Actual measured tree height when available.
+CR,numeric_predictor,float64,Crown ratio.
+STDAGE,numeric_predictor,float64,Stand age.
+BALIVE,numeric_predictor,float64,Live basal area for the condition.
+ALSTK,numeric_predictor,float64,All-live stocking.
+GSSTK,numeric_predictor,float64,Growing-stock stocking.
+DIA_squared,numeric_predictor,float64,Squared tree diameter feature.
+DIA_HT_interaction,numeric_predictor,float64,Interaction between tree diameter and height.
+SPCD,categorical_predictor,int64,Species code.
+STATECD,categorical_predictor,int64,State code.
+COUNTYCD,categorical_predictor,int64,County code.
+FORTYPCD,categorical_predictor,float64,Forest type code.
+OWNGRPCD,categorical_predictor,float64,Ownership group code.
+SITECLCD,categorical_predictor,float64,Site productivity class code.
+STDSZCD,categorical_predictor,float64,Stand size class code.
+diameter_class,categorical_predictor,category,Binned tree diameter class.

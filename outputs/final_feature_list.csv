@@ -1,0 +1,25 @@
+variable,feature_type,use_in_modelling
+DIA,numeric,Yes
+HT,numeric,Yes
+ACTUALHT,numeric,Yes
+CR,numeric,Yes
+STDAGE,numeric,Yes
+BALIVE,numeric,Yes
+ALSTK,numeric,Yes
+GSSTK,numeric,Yes
+DIA_squared,numeric,Yes
+DIA_HT_interaction,numeric,Yes
+SPCD,categorical,Yes
+STATECD,categorical,Yes
+COUNTYCD,categorical,Yes
+FORTYPCD,categorical,Yes
+OWNGRPCD,categorical,Yes
+SITECLCD,categorical,Yes
+STDSZCD,categorical,Yes
+diameter_class,categorical,Yes
+CN,identifier/context,No
+PLT_CN,identifier/context,No
+CONDID,identifier/context,No
+TREE,identifier/context,No
+CARBON_AG,target,Target only
+CARBON_AG_log,target,Target only
