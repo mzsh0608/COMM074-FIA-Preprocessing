@@ -92,9 +92,15 @@ def select_final_model_columns(df):
 
     target_columns = [column for column in TARGET_COLUMNS if column in df.columns]
     id_columns = [column for column in ID_COLUMNS if column in df.columns]
-    numeric_features = [column for column in NUMERIC_PREDICTORS if column in df.columns]
+    numeric_features = [
+        column
+        for column in NUMERIC_PREDICTORS
+        if column in df.columns and column not in target_columns
+    ]
     categorical_features = [
-        column for column in CATEGORICAL_PREDICTORS if column in df.columns
+        column
+        for column in CATEGORICAL_PREDICTORS
+        if column in df.columns and column not in target_columns
     ]
 
     selected_columns = target_columns + id_columns + numeric_features + categorical_features
@@ -121,13 +127,17 @@ def select_final_model_columns(df):
 def _find_leakage_columns(df):
     """Find explicitly listed and pattern-based leakage-risk columns."""
     leakage_columns = []
+    allowed_target_columns = set(TARGET_COLUMNS)
 
     for column in df.columns:
+        if column in allowed_target_columns:
+            continue
+
         column_upper = column.upper()
         is_explicit_leakage = column in LEAKAGE_RISK_COLUMNS
         is_drybio_column = column_upper.startswith("DRYBIO")
         is_volume_column = column_upper.startswith("VOL")
-        is_non_target_carbon = column_upper.startswith("CARBON") and column != "CARBON_AG"
+        is_non_target_carbon = column_upper.startswith("CARBON")
 
         if (
             is_explicit_leakage

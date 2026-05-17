@@ -1,5 +1,6 @@
 variable_name,role,type,description
 CARBON_AG,target,float64,Aboveground tree carbon target.
+CARBON_AG_log,target,float64,Log-transformed aboveground carbon target using log1p.
 CN,identifier/context,int64,Unique tree record identifier.
 PLT_CN,identifier/context,int64,Plot identifier used to link TREE records to PLOT and COND.
 CONDID,identifier/context,int64,Condition identifier within a plot.

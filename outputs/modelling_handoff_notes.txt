@@ -16,7 +16,7 @@ Split files:
 Leakage warning:
 - Do not use biomass, carbon component, volume, or TPA-derived variables as predictors.
 - These columns were excluded before saving the modelling files:
-  ["CARBON_AG_log", "CARBON_BG", "DRYBIO_AG", "DRYBIO_BG", "TPA_UNADJ", "VOLBFNET", "VOLCFNET", "VOLCSNET"]
+  ["CARBON_BG", "DRYBIO_AG", "DRYBIO_BG", "TPA_UNADJ", "VOLBFNET", "VOLCFNET", "VOLCSNET"]
 
 Pipeline warning:
 - One-hot encoding, scaling, and imputation should be fitted only inside later

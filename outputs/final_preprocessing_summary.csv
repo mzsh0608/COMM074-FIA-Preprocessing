@@ -1,2 +1,2 @@
 row_count,column_count,target_columns,id_columns,numeric_feature_count,categorical_feature_count,dropped_leakage_column_count,dropped_leakage_columns
-4540549,23,"[""CARBON_AG"", ""CARBON_AG_log""]","[""CN"", ""PLT_CN"", ""CONDID"", ""TREE""]",10,8,8,"[""CARBON_AG_log"", ""CARBON_BG"", ""DRYBIO_AG"", ""DRYBIO_BG"", ""TPA_UNADJ"", ""VOLBFNET"", ""VOLCFNET"", ""VOLCSNET""]"
+4540549,24,"[""CARBON_AG"", ""CARBON_AG_log""]","[""CN"", ""PLT_CN"", ""CONDID"", ""TREE""]",10,8,7,"[""CARBON_BG"", ""DRYBIO_AG"", ""DRYBIO_BG"", ""TPA_UNADJ"", ""VOLBFNET"", ""VOLCFNET"", ""VOLCSNET""]"
