@@ -1,0 +1,10 @@
+file_name,include_for_project,reason
+ENTIRE_TREE.csv,Yes,Main individual-tree table containing measurements and the CARBON_AG target.
+ENTIRE_PLOT.csv,Yes,Provides plot-level geography and inventory context.
+ENTIRE_COND.csv,Yes,"Provides forest condition, stand, site and ownership variables."
+ENTIRE_REF_SPECIES.csv,Yes,Provides species labels for interpreting SPCD.
+ENTIRE_REF_SPECIES_GROUP.csv,Yes,Provides species group labels for interpretation.
+ENTIRE_REF_FOREST_TYPE.csv,Yes,Provides forest type labels for EDA and reporting.
+ENTIRE_REF_FOREST_TYPE_GROUP.csv,Yes,Provides broader forest type group labels.
+ENTIRE_COUNTY.csv,Yes,Provides county and state context.
+ENTIRE_REF_OWNGRPCD.csv,Yes,Provides ownership group labels for interpretation.

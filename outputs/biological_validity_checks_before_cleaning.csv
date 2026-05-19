@@ -1,0 +1,10 @@
+check,count
+missing_DIA,291608
+DIA_less_equal_zero,0
+missing_HT,1057730
+HT_less_equal_zero,1
+missing_ACTUALHT,1807523
+ACTUALHT_less_equal_zero,2
+missing_CR,1686578
+CR_less_zero,0
+CR_greater_100,0
