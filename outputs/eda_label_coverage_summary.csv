@@ -1,0 +1,4 @@
+variable,label_column,labelled_rows,total_rows,labelled_percentage
+SPCD,species_name,4540549,4540549,100.0
+FORTYPCD,forest_type_name,4533620,4540549,99.85
+OWNGRPCD,ownership_group_name,4537586,4540549,99.93
