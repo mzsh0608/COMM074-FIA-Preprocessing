@@ -8,3 +8,10 @@ STATECD,Keep as categorical,Selected states show different median carbon pattern
 FORTYPCD,Keep as categorical,Forest type shows variation in median carbon.
 VOLCFNET / VOLCSNET / VOLBFNET,Drop from predictors,High missingness and potential overlap with biomass/carbon estimation.
 DRYBIO_AG,Drop from predictors,Directly related to carbon/biomass target and likely leakage risk.
+CARBON_BG,Drop from predictors,Non-target carbon-derived field and leakage risk.
+DRYBIO_BG,Drop from predictors,Biomass-derived field and leakage risk.
+TPA_UNADJ,Drop or treat cautiously,"Expansion factor/plot weighting field, not a direct tree characteristic for prediction."
+COUNTYCD,Keep as categorical,County provides finer geographic context than state.
+OWNGRPCD,Keep as categorical,Ownership context may help explain management-related forest differences.
+SITECLCD,Keep as categorical,Site productivity class may influence tree growth and carbon storage.
+STDSZCD,Keep as categorical,Stand size class provides interpretable structural context.
